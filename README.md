@@ -1,5 +1,6 @@
 # Domain Parking Sensors
 These scripts can be used to extract features from web pages to build a classifier that can detect parked domains.
+The code is based on the research paper **"Parking Sensors: Analyzing and Detecting parked domains"** (http://www.internetsociety.org/doc/parking-sensors-analyzing-and-detecting-parked-domains) by Thomas Vissers, Nick Nikiforakis and Wouter Joosen.
 
 ### Usage
 
@@ -15,11 +16,11 @@ These scripts can be used to extract features from web pages to build a classifi
 ##### Example scenario
 
 ```sh
-$ casperjs --domain=github.com --folder=benign_samples retrieve_page_data.js
-$ casperjs --domain=stackoverflow.com --folder=benign_samples retrieve_page_data.js
+$ casperjs --folder=benign_samples --domain=github.com retrieve_page_data.js
+$ casperjs --folder=benign_samples --domain=stackoverflow.com retrieve_page_data.js
 ...
-$ casperjs --domain=giyhub.com --folder=parked_samples retrieve_page_data.js 
-$ casperjs --domain=stackovreflow.com --folder=parked_samples retrieve_page_data.js 
+$ casperjs --folder=parked_samples --domain=giyhub.com retrieve_page_data.js 
+$ casperjs --folder=parked_samples --domain=stackovreflow.com retrieve_page_data.js 
 ...
 ```
 
