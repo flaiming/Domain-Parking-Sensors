@@ -1,0 +1,7 @@
+cssselect==0.9.1
+dnspython==1.12.0
+lxml==3.4.2
+nltk==2.0.5
+pyquery==1.2.9
+PyYAML==3.11
+tldextract==1.6
