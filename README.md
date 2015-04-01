@@ -27,3 +27,8 @@ $ casperjs --domain=stackovreflow.com --folder=parked_samples retrieve_page_data
 $ python feature_extractor.py benign_samples benign
 $ python feature_extractor.py parked_samples parked
 ```
+
+### Requirements
+ * **PhantomJS** (http://phantomjs.org/) - tested with version 1.9.7
+ * **CasperJS** (http://casperjs.org/) - tested with version 1.1.0-beta3
+ * **Python Modules** (```pip install -r requirements.txt```)
