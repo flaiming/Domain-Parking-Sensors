@@ -1,6 +1,6 @@
 # Domain Parking Sensors
 These scripts can be used to extract features from web pages to build a classifier that can detect parked domains.
-The code is based on the research paper **"Parking Sensors: Analyzing and Detecting parked domains"** (http://www.internetsociety.org/doc/parking-sensors-analyzing-and-detecting-parked-domains) by Thomas Vissers, Nick Nikiforakis and Wouter Joosen.
+The code is based on the research paper **"Parking Sensors: Analyzing and Detecting Parked Domains"** [[PDF]](http://www.internetsociety.org/doc/parking-sensors-analyzing-and-detecting-parked-domains) by Thomas Vissers, Nick Nikiforakis and Wouter Joosen .
 
 ### Usage
 
