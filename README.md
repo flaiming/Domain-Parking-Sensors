@@ -6,7 +6,7 @@ The code is based on the research paper **"Parking Sensors: Analyzing and Detect
 
  1. Retrieve the necessary data from a sample of domains (HAR, HTML, Redirections, frames, ...)
  
- ``` $ casperjs --domain=[somedomain.com] --folder=[output folder] retrieve_page_data.js```
+ ``` $ casperjs --folder=[output folder] --domain=[somedomain.com] retrieve_page_data.js```
 
 
  2. Extract 20+ features from this data (e.g. link location lengths, amount of text, third-party request ratio, ...)
