@@ -42,3 +42,13 @@ $ python feature_extractor.py parked_samples parked
  * **PhantomJS** (http://phantomjs.org/) - tested with version 1.9.7
  * **CasperJS** (http://casperjs.org/) - tested with version 1.1.0-beta3
  * **Python Modules** (```pip install -r requirements.txt```)
+
+
+### Troubleshooting
+Some versions of PhantomJS use SSLv3 by default. This might cause issues with SSL sites since the POODLE vulnerability was disclosed. To resolve this issue, you can add the following parameter when executing CasperJS:
+
+```
+--ssl-protocol=any 
+```
+ 
+More information:  http://stackoverflow.com/questions/26415188/casperjs-phantomjs-doesnt-load-https-page
