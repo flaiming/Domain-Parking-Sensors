@@ -89,15 +89,15 @@ casper.on('navigation.requested', function(url, type, willNavigate, main) {
 });
 
 // Open the webpage and retrieve the necessary data.
-casper.start(address, function() {    
+casper.start(address, function() {  
+    this.echo(this.getTitle());
     this.echo('Opened: ' + address);
     this.endTime = new Date();
     var title = this.evaluate(function () {
         return document.title;
     });   
-
     this.echo('framesCount: ' + casper.page.framesCount);
-    this.wait(10000, function() {
+    //this.wait(1000, function() {
         // Create the HAR file using netsniff.js code (below)
         console.log('Creating HAR file.');
         har = createHAR(address, title, casper.startTime, resources);        
@@ -107,14 +107,14 @@ casper.start(address, function() {
         frameLevel = 'root';            
         recursiveFrameScan();        
         // Take a screenshot   
-        console.log('Taking a screenshot of the page.'); 
-        casper.capture(dataFolder + '/' + visiturl + '/SCRNSHT_' + visiturl + '.png');        
+        //console.log('Taking a screenshot of the page.'); 
+        //casper.capture(dataFolder + '/' + visiturl + '/SCRNSHT_' + visiturl + '.png');        
         // Log the final url of the web page
         console.log('Logging the final URL of the page.'); 
         var finalURL = this.evaluate(function () {return window.location.href;});        
         fs.write(dataFolder + '/' + visiturl + '/FINALURL_' + visiturl + '.txt', finalURL, 'w');
 
-    });    
+    //});    
  
 });
 
