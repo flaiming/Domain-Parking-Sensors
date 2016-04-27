@@ -1,10 +1,11 @@
- #!/usr/bin/env python
+#!/usr/bin/env python
 import os
 import tldextract
 import alexa_downloader
 
 
 class TypoChecker:
+
     def __init__(self):
         self.f_fingers = {}
         self.top_1m_dict = {}
@@ -42,21 +43,21 @@ class TypoChecker:
             return ts_domains
 
         # Model 1: Character substitution, fat finger one
-        ts_domains[f_clean_domain]["c_subs"] = []   
+        ts_domains[f_clean_domain]["c_subs"] = []
         # print 'f_clean_domain:', f_clean_domain
-        for i in range(0,cld_len):
+        for i in range(0, cld_len):
             ts_characters = self.f_fingers[cl_domain[0][i]]
             for c in ts_characters:
-                ts_domains[f_clean_domain]["c_subs"].append("%s%c%s%s" % (cl_domain[0][0:i],c,cl_domain[0][i+1:],cl_domain[1]))
+                ts_domains[f_clean_domain]["c_subs"].append("%s%c%s%s" % (cl_domain[0][0:i], c, cl_domain[0][i + 1:], cl_domain[1]))
 
         # Model 2: Missing dot typos:
         # Changed to www detection for reversing
         ts_domains[f_clean_domain]["c_mdot"] = []
         if 'www' in f_clean_domain:
-            ts_domains[f_clean_domain]["c_mdot"].append(f_clean_domain.replace('www',''))
+            ts_domains[f_clean_domain]["c_mdot"].append(f_clean_domain.replace('www', ''))
         if 'www-' in f_clean_domain:
-            ts_domains[f_clean_domain]["c_mdot"].append(f_clean_domain.replace('www-',''))
-       
+            ts_domains[f_clean_domain]["c_mdot"].append(f_clean_domain.replace('www-', ''))
+
         # Model 3: Character omission
         # Dropped for reversing
         # ts_domains[f_clean_domain]["c_omm"] = []
@@ -66,23 +67,23 @@ class TypoChecker:
         # Model 4: Character permutation
         ts_domains[f_clean_domain]["c_perm"] = []
         for i in range(0, cld_len - 1):
-            ts_domains[f_clean_domain]["c_perm"].append(f_clean_domain[:i] + f_clean_domain[i+1] + f_clean_domain[i] + f_clean_domain[i+2:])
+            ts_domains[f_clean_domain]["c_perm"].append(f_clean_domain[:i] + f_clean_domain[i + 1] + f_clean_domain[i] + f_clean_domain[i + 2:])
 
         # Model 5: Character duplication
-        # Changed to deduplicate 
+        # Changed to deduplicate
         ts_domains[f_clean_domain]["c_dupl"] = []
-        for i in range(0, cld_len-1):
-            if f_clean_domain[i] == f_clean_domain[i+1]:
-                ts_domains[f_clean_domain]["c_dupl"].append(f_clean_domain[:i] + f_clean_domain[i+1:])  
+        for i in range(0, cld_len - 1):
+            if f_clean_domain[i] == f_clean_domain[i + 1]:
+                ts_domains[f_clean_domain]["c_dupl"].append(f_clean_domain[:i] + f_clean_domain[i + 1:])
 
         # Model 6: Changing TLD
         # Introduced for reversing
-        ts_domains[f_clean_domain]["c_tld"] = []    
+        ts_domains[f_clean_domain]["c_tld"] = []
         # Cancelled out due too many false positives
         popular_tlds = []  # popular_tlds = ['.com','.net','.org', '.co.uk','.info','.us']
         for tld in popular_tlds:
             if tld != cl_domain[1]:
-                ts_domains[f_clean_domain]["c_tld"].append(cl_domain[0] + tld)              
+                ts_domains[f_clean_domain]["c_tld"].append(cl_domain[0] + tld)
 
         return ts_domains[f_clean_domain]
 
